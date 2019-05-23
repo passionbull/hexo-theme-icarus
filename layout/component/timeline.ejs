@@ -1,11 +1,11 @@
 <div class="card widget">
   <div class="card-content">
+    <% if (typeof(head) !== 'undefined' && head) { %>
+      <h3 class="tag is-link">
+        <%= head %>
+      </h3>
+    <% } %>
     <div class="timeline">
-      <% if (typeof(head) !== 'undefined' && head) { %>
-        <h3 class="tag is-link">
-          <%= head %>
-        </h3>
-      <% } %>
       <% posts.each(post => { %>
         <%- partial("component/item", {post}) %>
       <% }) %>
