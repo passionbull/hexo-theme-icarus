@@ -21,14 +21,16 @@
     return get_config('sidebar.' + position + '.sticky', false) ? 'is-sticky' : '';
 } %>
 <div class="column <%= side_column_class() %> <%= visibility_class() %> <%= order_class() %> column-<%= position %> <%= sticky_class(position) %>">
-    <% get_widgets(position).forEach(widget => {%>
-        <%- partial('widget/' + widget.type, { widget, post: page }) %>
-    <% }) %>
+    <% get_widgets(position).forEach(widget => {
+        const cache = widget.cache || false;
+        partial('widget/' + widget.type, { widget, post: page }, {cache: cache})
+    }) %>
     <% if (position === 'left') { %>
         <div class="column-right-shadow is-hidden-widescreen <%= sticky_class('right') %>">
-        <% get_widgets('right').forEach(widget => {%>
-            <%- partial('widget/' + widget.type, { widget, post: page }) %>
-        <% }) %>
+        <% get_widgets('right').forEach(widget => {
+            const cache = widget.cache || false;
+            partial('widget/' + widget.type, { widget, post: page }, {cache: cache})
+        }) %>
         </div>
     <% } %>
 </div>
