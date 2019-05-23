@@ -8,4 +8,7 @@
         </nav>
     </div>
 </div>
-<%- partial('index', { page }) %>
+<%- partial("component/timeline", {posts: page.posts}) %>
+<% if (page.total > 1) { %>
+    <%- partial('common/paginator') %>
+<% } %>

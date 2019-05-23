@@ -1,13 +1,8 @@
 <% function buildArchive(posts, year, month = null) {
-    const time = moment([page.year, page.month ? page.month - 1 : null].filter(i => i !== null)); %>
-<div class="card widget">
-    <div class="card-content">
-        <h3 class="tag is-link">
-        <%= month === null ? year : time.locale(get_config('language', 'en')).format('MMMM YYYY') %>
-        </h3>
-        <%- partial("widget/timeline", {posts}) %>
-    </div>
-</div>
+    const time = moment([page.year, page.month ? page.month - 1 : null].filter(i => i !== null));
+    const time_tag = month === null ? year : time.locale(get_config('language', 'en')).format('MMMM YYYY')
+%>
+<%- partial("component/timeline", {posts, head: time_tag}) %>
 <% }
 if (!page.year) {
     let years = {};
