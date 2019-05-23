@@ -10,6 +10,8 @@
 *     <%- _css() %>
  */
 const cheerio = require('cheerio');
+const desc_by_count = (a, b) => (parseInt(b.count) - parseInt(a.count))
+const now = () => new Date().toISOString()
 
 module.exports = function (hexo) {
     hexo.extend.helper.register('_list_archives', function () {
@@ -22,6 +24,7 @@ module.exports = function (hexo) {
                 count: $(this).find('.archive-list-count').text()
             });
         });
+        console.log(`${now()} _list_archives called: ${archives.length}`);
         return archives;
     });
 
@@ -40,6 +43,8 @@ module.exports = function (hexo) {
                 }
                 categories.push(category);
             });
+            categories.sort(desc_by_count)
+            console.log(`${now()} _list_categories called: ${categories.length}`);
             return categories;
         }
         return traverse($('.category-list'));
@@ -55,6 +60,8 @@ module.exports = function (hexo) {
                 count: $(this).find('.tag-list-count').text()
             });
         });
+        tags.sort(desc_by_count)
+        console.log(`${now()} _list_tags called: ${tags.length}`);
         return tags;
     });
 
