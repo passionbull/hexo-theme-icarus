@@ -7,7 +7,7 @@
     <% } %>
     <div class="timeline">
       <% posts.each(post => { %>
-        <%- partial("component/item", {post}) %>
+        <%- partial("component/cached_item", {post}) %>
       <% }) %>
     </div>
   </div>
