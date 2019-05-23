@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html <%- has_config('language') ? ' lang="' + get_config('language').substring(0, 2) + '"' : '' %>>
 <head>
-    <%- partial('common/head') %>
+    <%- partial('common/head', {}, {cache: true}) %>
 </head>
 <body class="is-<%= column_count() %>-column">
     <%- partial('common/navbar', { page }) %>
@@ -25,11 +25,11 @@
             </div>
         </div>
     </section>
-    <%- partial('common/footer') %>
-    <%- partial('common/scripts') %>
+    <%- partial('common/footer', {}, {cache: true}) %>
+    <%- partial('common/scripts', {}, {cache: true}) %>
 
     <% if (has_config('search.type')) { %>
-    <%- partial('search/' + get_config('search.type')) %>
+    <%- partial('search/' + get_config('search.type'), {}, {cache: true}) %>
     <% } %>
 </body>
 </html>
