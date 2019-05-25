@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html <%- has_config('language') ? ' lang="' + get_config('language').substring(0, 2) + '"' : '' %>>
 <head>
-    <%- partial('common/head', {}, {cache: true}) %>
+    <%- partial('common/head', {}, {cache: false}) %>
 </head>
 <body class="is-<%= column_count() %>-column">
     <%- partial('common/navbar', { page }) %>
