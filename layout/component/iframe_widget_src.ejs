@@ -2,17 +2,31 @@
   <head>
     <base target="_top">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
-    <link rel="stylesheet" href="<%= get_config("root") %>css/style.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+    <link rel="stylesheet" href="<%= get_config("root") %>css/style.css">
+    <style>
+      .widget .media:not(:last-child) {
+          margin-bottom: 0.75rem;
+      }
+    </style>
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script type='text/javascript'>
       $(function(){
-        $(document.body).height($("#content").height())
+        var resize = function() {
+          $(document.body).height($("#content").height());
+        }
+        $(document).on("load", function() {
+          resize()
+          $("#content").on("resize", function() {
+            resize()
+          });
+        })
       });
     </script>
   </head>
   <body>
-    <div id="content" style="background-color: white">
+    <div id="content" class="widget" style="background-color: white">
       <%- partial(`widget/content/${page.widget.type}`, {widget: page.widget}) %>
     </div>
   </body>
