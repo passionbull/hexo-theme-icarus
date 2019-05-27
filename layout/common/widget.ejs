@@ -15,8 +15,14 @@
     return '';
 } %>
 <% function render_widget(widget) {
-    let cache = widget.cache || false;
-    return partial('widget/' + widget.type, { widget, post: page }, {cache: cache});
+    const iframe = widget.iframe || false;
+    const cache = widget.cache || false;
+    if (iframe) {
+        const template = cache ? 'component/cached_iframe_widget_ref' : 'component/iframe_widget_ref';
+        return partial(template, { widget })
+    } else {
+        return partial('widget/' + widget.type, { widget, post: page }, {cache: cache});
+    }
 } %>
 <% function order_class() {
     return position === 'left' ? 'has-order-1' : 'has-order-3';

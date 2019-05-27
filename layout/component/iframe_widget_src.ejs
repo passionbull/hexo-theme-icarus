@@ -1,0 +1,19 @@
+<html>
+  <head>
+    <base target="_top">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.7.2/css/bulma.css">
+    <link rel="stylesheet" href="<%= get_config("root") %>css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:400,600|Source+Code+Pro">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <script type='text/javascript'>
+      $(function(){
+        $(document.body).height($("#content").height())
+      });
+    </script>
+  </head>
+  <body>
+    <div id="content" style="background-color: white">
+      <%- partial(`widget/content/${page.widget.type}`, {widget: page.widget}) %>
+    </div>
+  </body>
+</html>

@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+<% if (page.__widget) { %>
+<%- body %>
+<% } else { %>
 <html <%- has_config('language') ? ' lang="' + get_config('language').substring(0, 2) + '"' : '' %>>
 <head>
     <%- partial('common/head', {}, {cache: false}) %>
@@ -33,3 +36,4 @@
     <% } %>
 </body>
 </html>
+<% } %>
