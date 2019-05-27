@@ -25,6 +25,34 @@ module.exports = function (hexo) {
         return widgets.filter(widget => widget.hasOwnProperty('position') && widget.position === position);
     });
 
+    hexo.extend.helper.register('guess_widget_height', function (widget) {
+        let height = 150;
+        switch(widget.type) {
+            case 'profile':
+                height = 365;
+                break;
+            case 'recent_posts':
+                height = 450;
+                break;
+            case 'categoreis':
+                height = 150;
+                break;
+            case 'tagcloud':
+                height = 150;
+                break;
+            case 'tag':
+                height = 150;
+                break;
+            case 'archive':
+                height = 150;
+                break;
+            default:
+                height = 150;
+                break;
+        }
+        return height;
+    });
+
     hexo.extend.helper.register('has_column', function (position) {
         const getWidgets = hexo.extend.helper.get('get_widgets').bind(this);
         return getWidgets(position).length > 0;

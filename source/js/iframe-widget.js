@@ -1,33 +1,40 @@
 (function($){
-    var iFrames = $('iframe');
-    function iResize() {
-      for (var i = 0, j = iFrames.length; i < j; i++) {
-        var frame = iFrames[i];
+    var iframes = $('iframe');
+    function resize() {
+      for (var i = 0, j = iframes.length; i < j; i++) {
+        var frame = iframes[i];
         var body = frame.contentWindow.document.body;
-        // iFrames[i].style.height = iFrames[i].contentWindow.document.body.offsetHeight + 'px';
-        // iFrames[i].contentWindow.document.body.style.width = iFrames[i].offsetWidth + 'px';
+        // iframes[i].style.height = iframes[i].contentWindow.document.body.offsetHeight + 'px';
+        // iframes[i].contentWindow.document.body.style.width = iframes[i].offsetWidth + 'px';
+        // console.log("before resized", $(body).width(), $(frame).height());
         $(body).width($(frame).width());
         $(frame).height($(body).height());
+        $(body).show();
+        // console.log("after resized", $(body).width(), $(frame).height());
       }
     }
 
-    iFrames.on("load", function(){
-      setTimeout(iResize, 0);
-      $(window).on("resize", iResize);
+    // resize();
+
+    iframes.on("load", function(){
+      setTimeout(resize, 0);
+      $(window).on("resize", resize);
     });
 
+    $(document).ready(resize);
+
     // if ($.browser.webkit || $.browser.opera) {
-    //   iFrames.load(function(){
-    //     setTimeout(iResize, 0);
+    //   iframes.load(function(){
+    //     setTimeout(resize, 0);
     //   });
 
-    //   for (var i = 0, j = iFrames.length; i < j; i++) {
-    //     var iSource = iFrames[i].src;
-    //     iFrames[i].src = '';
-    //     iFrames[i].src = iSource;
+    //   for (var i = 0, j = iframes.length; i < j; i++) {
+    //     var iSource = iframes[i].src;
+    //     iframes[i].src = '';
+    //     iframes[i].src = iSource;
     //   }
     // } else {
-    //   iFrames.load(function() {
+    //   iframes.load(function() {
     //     this.style.height = this.contentWindow.document.body.offsetHeight + 'px';
     //   });
     // }

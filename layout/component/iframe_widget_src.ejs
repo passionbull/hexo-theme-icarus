@@ -13,19 +13,19 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
     <script type='text/javascript'>
       $(function(){
-        var resize = function() {
-          $(document.body).height($("#content").height());
+        const iframe = $("#widget-<%= page.widget.type %>", window.parent.document);
+        const resize = function() {
+          $(document.body).width(iframe.width());
+          // $(document.body).height($("#content").height());
+          // console.log('body size changed', $(document.body).width(), iframe.width()
         }
-        $(document).on("load", function() {
-          resize()
-          $("#content").on("resize", function() {
-            resize()
-          });
-        })
+        $(document).on("load", resize);
+        $(document).ready(resize);
+        // resize();
       });
     </script>
   </head>
-  <body>
+  <body style="display: none;">
     <div id="content" class="widget" style="background-color: white">
       <%- partial(`widget/content/${page.widget.type}`, {widget: page.widget}) %>
     </div>
