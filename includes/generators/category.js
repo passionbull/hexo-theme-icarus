@@ -6,6 +6,7 @@ module.exports = function (hexo) {
         const config = this.config;
         const perPage = config.category_generator.per_page;
         const paginationDir = config.pagination_dir || 'page';
+        const list_updated_categories = hexo.extend.helper.get('list_updated_categories').bind(this)
 
         function findParent(category) {
             let parents = [];
@@ -15,8 +16,15 @@ module.exports = function (hexo) {
             }
             return parents;
         }
-        
+
         return locals.categories.reduce(function(result, category){
+            if (config.incremental) {
+                // in incremental mode, update the affected category pages only
+                const updated_categories = list_updated_categories();
+                if (updated_categories && updated_categories.indexOf(category['name']) == -1) {
+                    return result;
+                }
+            }
             const posts = category.posts.sort('-date');
             const data = pagination(category.path, posts, {
                 perPage: perPage,
@@ -27,7 +35,7 @@ module.exports = function (hexo) {
                     parents: findParent(category)
                 }
             });
-        
+
             return result.concat(data);
         }, []);
     });
