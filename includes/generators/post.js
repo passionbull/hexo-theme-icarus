@@ -7,8 +7,6 @@ module.exports = function (hexo) {
       const length = posts.length;
       const list_updated_posts = hexo.extend.helper.get('list_updated_posts').bind(this);
 
-      // console.log(posts, updated_posts);
-
       function filter_posts(posts) {
         if (hexo.config.incremental) {
           // in incremental mode, update the affected archive pages only
