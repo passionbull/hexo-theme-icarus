@@ -18,7 +18,8 @@
     const iframe = widget.iframe || false;
     const cache = widget.cache || false;
     if (iframe) {
-        const template = cache ? 'component/cached_iframe_widget_ref' : 'component/iframe_widget_ref';
+        const cahced_prefix = cache ? 'cached_' : '';
+        const template = `component/${cahced_prefix}pjax_widget_ref`;
         return partial(template, { widget })
     } else {
         return partial('widget/' + widget.type, { widget, post: page }, {cache: cache});
