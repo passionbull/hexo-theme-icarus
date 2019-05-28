@@ -15,9 +15,9 @@
     return '';
 } %>
 <% function render_widget(widget) {
-    const iframe = widget.iframe || false;
+    const component = widget.component || false;
     const cache = widget.cache || false;
-    if (iframe) {
+    if (component) {
         const cahced_prefix = cache ? 'cached_' : '';
         const template = `component/${cahced_prefix}pjax_widget_ref`;
         return partial(template, { widget })

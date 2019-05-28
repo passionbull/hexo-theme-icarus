@@ -4,9 +4,9 @@
 module.exports = function (hexo) {
   hexo.extend.generator.register('widget', function (locals) {
     const widgets = hexo.extend.helper.get('get_config').bind(this)('widgets');
-    const iframe_widgets = widgets.filter((w) => (w.iframe))
+    const component_widgets = widgets.filter((w) => (w.component))
 
-    return iframe_widgets.map(function(widget){
+    return component_widgets.map(function(widget){
       return {
         path: `widgets/${widget.type}.html`,
         layout: 'component/pjax_widget_src',
