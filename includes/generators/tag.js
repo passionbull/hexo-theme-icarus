@@ -3,7 +3,7 @@
 const pagination = require('hexo-pagination');
 
 module.exports = function (hexo) {
-    // ATTENTION: This will override the default category generator!
+    // ATTENTION: This will override the default tag generator!
     hexo.extend.generator.register('tag', function(locals) {
       const config = this.config;
       const perPage = config.tag_generator.per_page;
@@ -12,16 +12,23 @@ module.exports = function (hexo) {
       const tags = locals.tags;
       let tagDir;
 
-
-      const pages = tags.reduce((result, tag) => {
-        if (!tag.length) return result;
-
+      function needs_update(tag) {
         if (config.incremental) {
           // in incremental mode, update the affected tag pages only
           const updated_tags = list_updated_tags();
           if (updated_tags && updated_tags.indexOf(tag['name']) == -1) {
-              return result;
+              return false;
           }
+        }
+        return true;
+      }
+
+
+      const pages = tags.reduce((result, tag) => {
+        if (!tag.length) return result;
+
+        if (! needs_update(tag)) {
+            return result;
         }
 
         const posts = tag.posts.sort('-date');

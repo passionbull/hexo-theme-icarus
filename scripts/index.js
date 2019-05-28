@@ -6,6 +6,7 @@ require('../includes/generators/categories')(hexo);
 require('../includes/generators/category')(hexo);
 require('../includes/generators/tags')(hexo);
 require('../includes/generators/tag')(hexo);
+require('../includes/generators/archive')(hexo);
 require('../includes/generators/insight')(hexo);
 // require('../includes/generators/iframe_widget')(hexo);
 require('../includes/generators/pjax_widget')(hexo);

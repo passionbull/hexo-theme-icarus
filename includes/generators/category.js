@@ -17,14 +17,22 @@ module.exports = function (hexo) {
             return parents;
         }
 
-        return locals.categories.reduce(function(result, category){
+        function needs_update(category) {
             if (config.incremental) {
                 // in incremental mode, update the affected category pages only
                 const updated_categories = list_updated_categories();
                 if (updated_categories && updated_categories.indexOf(category['name']) == -1) {
-                    return result;
+                    return false;
                 }
             }
+            return true;
+        }
+
+        return locals.categories.reduce(function(result, category){
+            if (! needs_update(category)) {
+                return result;
+            }
+
             const posts = category.posts.sort('-date');
             const data = pagination(category.path, posts, {
                 perPage: perPage,
