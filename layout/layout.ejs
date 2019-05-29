@@ -24,6 +24,7 @@
             <div class="columns">
                 <%- partial('common/widget', { position: 'left' }) %>
                 <%- partial('common/widget', { position: 'right' }) %>
+                <%- partial('component/pjax_widget_js', {}, {cache: true}) %>
                 <div class="column <%= main_column_class() %> has-order-2 column-main"><%- body %></div>
             </div>
         </div>
