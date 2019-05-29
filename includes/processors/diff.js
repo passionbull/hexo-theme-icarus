@@ -1,5 +1,7 @@
 /*
   Figure out the posts, tags, categories and archives that needs to be updated
+
+  @deprecated this module is deprecated to process the posts to find the impacted tags and categories
 */
 
 let postProcessor = require(`hexo/lib/plugins/processor/post`)
