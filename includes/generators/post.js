@@ -7,19 +7,17 @@ module.exports = function (hexo) {
       const length = posts.length;
       const list_updated_posts = hexo.extend.helper.get('list_updated_posts').bind(this);
 
-      function filter_posts(posts) {
+      function needs_update(post) {
         if (hexo.config.incremental) {
           // in incremental mode, update the affected archive pages only
           const updated_posts = list_updated_posts();
-          if (updated_posts && updated_posts.length > 0) {
-            return posts.filter((p)=>(updated_posts.indexOf(p['source']) != -1));
+          if (updated_posts && updated_posts.length > 0
+              && updated_posts.indexOf(post['source']) != -1) {
+            return true;
           }
+          return false;
         }
-        return posts;
-      }
-
-      if (hexo.config.incremental) {
-        posts = filter_posts(posts);
+        return true;
       }
 
       return posts.map((post, i) => {
@@ -27,10 +25,14 @@ module.exports = function (hexo) {
         const path = post.path;
 
         if (!layout || layout === 'false') {
-          return {
-            path,
-            data: post.content
-          };
+          if (needs_update(post)) {
+            return {
+              path,
+              data: post.content
+            };
+          } else {
+            return {}
+          }
         }
 
         if (i) post.prev = posts[i - 1];
@@ -41,11 +43,15 @@ module.exports = function (hexo) {
 
         post.__post = true;
 
-        return {
-          path,
-          layout: layouts,
-          data: post
-        };
+        if (needs_update(post)) {
+          return {
+            path,
+            layout: layouts,
+            data: post
+          };
+        } else {
+          return {}
+        }
       });
     });
 }

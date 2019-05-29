@@ -16,9 +16,11 @@ module.exports = function (hexo) {
         if (config.incremental) {
           // in incremental mode, update the affected tag pages only
           const updated_tags = list_updated_tags();
-          if (updated_tags && updated_tags.indexOf(tag['name']) == -1) {
-              return false;
+          if (updated_tags && updated_tags.length > 0
+              && updated_tags.indexOf(tag['name']) != -1) {
+              return true;
           }
+          return false;
         }
         return true;
       }

@@ -21,9 +21,11 @@ module.exports = function (hexo) {
             if (config.incremental) {
                 // in incremental mode, update the affected category pages only
                 const updated_categories = list_updated_categories();
-                if (updated_categories && updated_categories.indexOf(category['name']) == -1) {
-                    return false;
+                if (updated_categories && updated_categories.length > 0 &&
+                    updated_categories.indexOf(category['name']) != -1) {
+                    return true;
                 }
+                return false;
             }
             return true;
         }
