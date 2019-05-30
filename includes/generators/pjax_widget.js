@@ -1,5 +1,5 @@
 /**
- * Tag list page generator
+ * Widget page generator
  */
 module.exports = function (hexo) {
   hexo.extend.generator.register('widget', function (locals) {
