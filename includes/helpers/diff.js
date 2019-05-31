@@ -42,7 +42,7 @@ module.exports = function (hexo) {
 
     hexo.extend.helper.register('list_updated_posts', function (link) {
         if (_posts.length == 0) {
-            process.chdir("source")
+            process.chdir(".source")
             const res = execSync("git diff HEAD HEAD~1 --name-only").toString('utf8');
             process.chdir("..")
 
