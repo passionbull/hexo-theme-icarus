@@ -11,6 +11,7 @@ require('../includes/generators/post')(hexo);
 require('../includes/generators/insight')(hexo);
 // require('../includes/generators/iframe_widget')(hexo);
 require('../includes/generators/pjax_widget')(hexo);
+require('../includes/renderers/markdown')(hexo);
 require('../includes/filters/highlight')(hexo);
 require('../includes/helpers/cdn')(hexo);
 require('../includes/helpers/config')(hexo);
