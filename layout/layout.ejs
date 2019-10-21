@@ -4,6 +4,13 @@
 <!DOCTYPE html>
 <html <%- has_config('language') ? ' lang="' + get_config('language').substring(0, 2) + '"' : '' %>>
 <head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-9620312339524274",
+          enable_page_level_ads: true
+     });
+</script>
     <%- partial('common/head', {}, {cache: false}) %>
 </head>
 <body class="is-<%= column_count() %>-column">
