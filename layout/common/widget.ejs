@@ -35,8 +35,11 @@
     <% get_widgets(position).forEach(widget => {%>
         <%- render_widget(widget) %>
     <% }) %>
-    <% if (position === 'left') { %>
+    <% if (position === 'right') { %>
         <%- partial('ads/ad_right_sidebar') %>
+    <% } %>
+
+    <% if (position === 'left') { %>
         <div class="column-right-shadow is-hidden-widescreen <%= sticky_class('right') %>">
         <% get_widgets('right').forEach(widget => {%>
             <%- render_widget(widget) %>
