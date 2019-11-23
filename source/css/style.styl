@@ -89,20 +89,51 @@ img.thumbnail
     .navbar-menu
         flex-grow: 1
         flex-shrink: 0
-        overflow-x: auto
+        overflow: visible
     .navbar-start
         justify-content: flex-start
         margin-right: auto
+        margin-left: 0.75rem
     .navbar-end
         justify-content: flex-end
         margin-left: auto
     .navbar-item
+        position: relative
         display: flex
         align-items: center
-        padding: 1.25rem 0.75rem
+        padding: 0
+        a
+            display: inline-block
+            padding: 1.25rem 0.75rem
+            vertical-align: top
+            color: #0a0a0a
+        // &.is-dropdown
+        &:hover
+            background-color: #f8f8f8
+            a
+                color: hsl(217, 71%, 53%)
+            .drop-down
+                display: block
+        .drop-down
+            display: none
+            position: absolute
+            left: 0
+            top: calc(100% - 1px)
+            background-color: #f9f9f9
+            min-width: 160px
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2)
+            z-index: 1
+            a
+                display: block
+                padding: 0.75rem
+                color: #0a0a0a
+                &:hover
+                    background-color: #f1f1f1
+                    color: hsl(217, 71%, 53%)
         &.is-active
-            color: hsl(217, 71%, 53%)
             background-color: transparent
+            a
+                color: hsl(217, 71%, 53%)
     @media screen and (max-width: screen-desktop - 1)
         .navbar-menu
             justify-content: center
